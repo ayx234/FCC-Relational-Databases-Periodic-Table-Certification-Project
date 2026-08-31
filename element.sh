@@ -7,6 +7,7 @@ ELEMENT() {
   # if no argument provided
   then
     echo Please provide an element as an argument.
+    return
   elif [[ "$1" =~ ^[0-9]+$ ]]
   # if number provided as argument
   then
@@ -15,6 +16,7 @@ ELEMENT() {
     if [[ ! -z "$ATOMIC_NUMBER" ]]
     then
       PRINT_ELEMENT_INFO $ATOMIC_NUMBER
+      return
     fi
   elif [[ $1 =~ ^[A-Za-z]+$ ]]
   # if text provided as argument
@@ -27,6 +29,7 @@ ELEMENT() {
       # if atomic number exists
       then
         PRINT_ELEMENT_INFO $ATOMIC_NUMBER
+        return
       fi
     else
     # if text > 2 chars
@@ -35,6 +38,7 @@ ELEMENT() {
       # if atomic number exists
       then
         PRINT_ELEMENT_INFO $ATOMIC_NUMBER
+        return
       fi
     fi
   fi
