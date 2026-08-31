@@ -42,6 +42,12 @@ ELEMENT() {
       fi
     fi
   fi
+
+  # if no ATOMIC_NUMBER is found
+  if [[ -z "$ATOMIC_NUMBER" ]]
+  then
+    echo I could not find that element in the database.
+  fi
 }
 
 PRINT_ELEMENT_INFO(){
