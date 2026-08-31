@@ -20,9 +20,17 @@ ELEMENT() {
   # if text provided as argument
   then
     if [[ ${#1} -le 2 ]]
-    # if it is >= 2 characters
+    # if text <= 2 characters
     then
       ATOMIC_NUMBER=$($PSQL "SELECT atomic_number FROM elements WHERE symbol = '$1'")
+      if [[ ! -z "$ATOMIC_NUMBER" ]]
+      # if atomic number exists
+      then
+        PRINT_ELEMENT_INFO $ATOMIC_NUMBER
+      fi
+    else
+    # if text > 2 chars
+      ATOMIC_NUMBER=$($PSQL "SELECT atomic_number FROM elements WHERE name = '$1'")
       if [[ ! -z "$ATOMIC_NUMBER" ]]
       # if atomic number exists
       then
